@@ -20,11 +20,9 @@
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <button class="btn btn-primary" type="submit"  onclick="addTask()" style="height: 40px; width :100px;">Add Task</button>
-                        <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Launch demo modal
-          </button>
+          <button class="btn btn-primary" type="button"   data-toggle="modal" data-target="#exampleModalCenter"  style="height: 40px; width :100px;">Add Task</button>
+          
+          <!-- Button trigger modal -->
 
           <!-- Modal -->
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -37,12 +35,18 @@
                   </button>
                 </div>
                 <div class="modal-body">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Task Label</span>
+                    </div>
+                    <textarea id="tasklabel" class="form-control" aria-label="With textarea"></textarea>
+                  </div>
                   <input type="date" id="deadline" name="deadline">
-                  <input  id= "submit" type="submit" onclick="submitButton">
+                  <!-- <input  id= "submit" type="submit" onclick="submitButton()"> -->
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button id="closebutton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="saveButton()">Save</button>
                 </div>
               </div>
             </div>
@@ -58,7 +62,6 @@
       </div>
       <div class="row" >
         <div class="col-3 task-group todo-column"ondrop="drop(event)" ondragover="allowDrop(event)">
-              <button id="taskTodo1" type="button" class="btn btn-success btn-block task shadow p-3 mb-5 rounded"  draggable="true" ondragstart="drag(event)"></button>
 
 
         </div>

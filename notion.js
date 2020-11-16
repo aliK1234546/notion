@@ -12,16 +12,18 @@ function drop(ev) {
   ev.target.appendChild(document.getElementById(data));
 }
 
-function addTask(){
+  $(function () {
+    $('#datetimepicker1').datetimepicker({
+    	format: 'MM//DD/YYYY'
+    });
+ });
 
-	$(".todo-column").append("<button id='taskTodo1' type='button' class='btn btn-success btn-block task'  draggable='true' ondragstart='drag(event)'>Info</button>");
+function saveButton(){
+	var tasklabel = $( "#tasklabel").val();
+	var deadline = 	$( "#deadline").val();
+	$(".todo-column").append("<button id='taskTodo1' type='button' class='btn btn-success btn-block task'  draggable='true' ondragstart='drag(event)'><p>"+tasklabel+"</p><p>"+deadline+"</p></button>");
+	$("#closebutton").click();
+
+
 
 }
-function () {
-             $('#datetimepicker1').datetimepicker();
-         }
-
-$( "#submit").click(function() {
-  var deadline = $("#deadline").val();
-  alert(deadline);
-});
