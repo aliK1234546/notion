@@ -119,7 +119,7 @@ body,
     cursor: text;
     align-items: center;
 }
-#task{
+.task{
   height: 75px;
   display: block;
   border-radius:5px ;
