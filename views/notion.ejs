@@ -106,31 +106,41 @@
         </div>
         <div class="row mb-2">
           <div class="col-4   task-group todo-column" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <ul>
+            <ul style="list-style-type: none;" class="p-0">
               <% for (let task of tasks){ %>
-                <li id="task_<%=task._id%>" >
-                  <button type='button' class="btn w-100 task" draggable="true" ondragstart="drag(event)">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-1 p-0">
-                          <div style="border-radius:5px ; height: 75px; background-color: rgba(255, 118, 0); width: 5px;">
-                          </div>
+              <li id="task_<%=task._id%>">
+                <button type='button' class="btn w-100 task" draggable="true" ondragstart="drag(event)">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-1 p-0">
+                        <div style="border-radius:5px ; height: 75px; background-color: rgba(255, 118, 0); width: 5px;">
                         </div>
-                        <div class="col-10 m-auto">
-                          <a><%= task.name %></a>
-                        </div>
-                        <div class="col-1 p-0 m-auto">
-                          <div  class="delete_task_button" >
-                            <form action="/notion/<%=task.id%>?_method=DELETE" method="POST" id="delete">
-                              <button> X </button>
-                            </form>
-                          </div>
+                      </div>
+                      <div class="col-10 m-auto">
+                        <a><%= task.name %></a>
+                      </div>
+                      <div class="col-1 p-0 ">
+                        <div class="delete_task_button">
+                          <form  class="m-0" action="/notion/<%=task.id%>?_method=DELETE" method="POST" id="delete">
+                            <input type="submit" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"
+                            value="X" style="
+                            height: 15px;
+                            width: 5px;
+                            font-size: 10px;
+                            margin: auto;
+                            padding-left: 0;
+                        ">
+                        </form>
+                          
                         </div>
                       </div>
                     </div>
-                  </button>
-                </li>
-              <% } %> 
+                  </div>
+                </button>
+              </li>
+
+              <% } %>
+
             </ul>
             <!-- <button id="task" type='button' class="btn w-100" draggable="true" ondragstart="drag(event)">
               <div class="container">
