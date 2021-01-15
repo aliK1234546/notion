@@ -16,6 +16,21 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
 
   <title>Hello, world!</title>
+  <script>
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+    }
+    </script>
 </head>
 
 
@@ -115,7 +130,7 @@
           <div class="col-4   task-group todo-column" ondrop="drop(event)" ondragover="allowDrop(event)">
             <ul style="list-style-type: none;" class="p-0">
               <% for (let task of tasks){ %>
-              <li id="task_<%=task._id%>">
+              <li id="task_<%=task._id%>" draggable="true" ondragstart="drag(event)">
                 <button type='button' class="btn w-100 task" draggable="true" ondragstart="drag(event)">
                   <div class="container">
                     <div class="row">

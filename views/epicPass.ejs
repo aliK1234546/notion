@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" type="text/css" href="/notion.css">
     <link rel="stylesheet" type="text/css" href="trello.css">
+    <link rel="stylesheet" type="text/css" href="/epic.css">
+
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
@@ -37,11 +39,26 @@
         </header>
         <h2 class="cover-heading text-center" style="color: #fff;" id="taskListTitle">Epic Pass</h2>
         <div class="container containerblur " style="height: fit-content;">
-            <div class="container" style="min-height: 400px;">
+            <div class="container" style="min-height: 400px; ">
                 <div class="row">
                     <div class="col-6 text-center">Saturday</div>
                     <div class="col-6 text-center">Sunday</div>
+                </div>
+                <div class="row" style="text-align: center; margin-top: 50px;" >
+                    <% if(saturdayAndSunday[0]){ %> 
+                        <div class="col-6"><i id = "sunday_availibility_icon"  class="fas fa-snowboarding" style="font-size: 250px; color: green; opacity: 0.8;" ></i></div>
 
+                    <% }else{ %> 
+                        <div class="col-6"><i id = "sunday_availibility_icon"  class="fas fa-snowboarding" style="font-size: 250px; color: red; opacity: 0.8;" ></i></div>
+
+                    <% } %> 
+                     <% if(saturdayAndSunday[1]){ %> 
+                        <div class="col-6"><i id = "saturday_availibity_icon"  class="fas fa-snowboarding" style="font-size: 250px; color: green; opacity: 0.8;" ></i ></div>
+
+                    <% }else{ %> 
+                        <div class="col-6"><i id = "saturday_availibity_icon"  class="fas fa-snowboarding" style="font-size: 250px; color: red; opacity: 0.8;" ></i ></div>
+
+                    <% } %> 
                 </div>
 
 
@@ -61,6 +78,8 @@
                 integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
                 crossorigin="anonymous"></script>
             <script type="text/javascript" src="notion.js"></script>
+            <script type="text/javascript" src="epicRequest.js"></script>
+
 
 
 
