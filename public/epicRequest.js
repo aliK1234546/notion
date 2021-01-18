@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 var dateFormat = require('dateformat');
+const e = require('express');
 
 
 
@@ -42,24 +43,3 @@ fetch("https://www.epicpass.com/api/LiftAccessApi/GetCapacityControlReservationI
 })
 
 
-var isAvailable =false;
-
-$( "#greenRedButton" ).click(function() {
-    getAvailibility();
-
-    if(isAvailable){
-    $("#saturday_availibity_icon").css("color", "green");
-    isAvailable=false;
-    }
-    else{
-        $("#saturday_availibity_icon").css("color", "red");
-        isAvailable = true;
-
-    }
-  });
-
-
-function getAvailibility(){
-    alert("getAvailibility");
-    return isAvailable;
-}
