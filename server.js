@@ -7,6 +7,8 @@ const fetch = require('node-fetch');
 const path = require('path');
 const methodOverride = require('method-override')
 var dateFormat = require('dateformat');
+var nodemailer = require('nodemailer');
+
 
 
 
@@ -15,6 +17,7 @@ module.exports = function createServer() {
     const app = express()
     const server = http.Server(app)
     const io = socketIO(server)
+    app.set('socketio', io)
 
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, '/views'))
@@ -36,6 +39,26 @@ module.exports = function createServer() {
     })
     const Task = mongoose.model('Task', taskSchema);
 
+    //mailing
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'alinail13.ank@gmail.com',
+            pass: 'Comolokko13!!'
+        }
+    });
+
+    var mailOptions = {
+        from: 'alinail13.ank@gmail.com',
+        to: 'alikozan123456@gmail.com',
+        subject: 'Weekend Available',
+        text: 'https://www.epicpass.com/plan-your-trip/lift-access/reservations.aspx!'
+    };
+
+
+    //mailing ends here
 
     app.get('/dashboard', (req, res) => {
         res.render('dashboard')
@@ -74,7 +97,7 @@ module.exports = function createServer() {
 
         var saturdayAndSunday = [true, true];
 
-    
+
 
         // else if(new Date(day).getDay() ===1){
         //   console.log('monday  s full')
@@ -96,12 +119,29 @@ module.exports = function createServer() {
 
     io.on('connection', async function (socket) {
         var data = await getData();
-        var serverMessage = { message: new Date() }
+        var serverMessage = { message: data }
         socket.emit("server-ping", serverMessage)
         socket.on("client-pong", async (data) => {
             setTimeout(async function () {
                 data = await getData();
-                serverMessage = { message: new Date() }
+                if (data[0] === true) {
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
+                }
+                if (data[1] === true) {
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });                }
+                serverMessage = { message: data }
                 socket.emit("server-ping", serverMessage)
             }, 1000 * 10)
         })
@@ -148,8 +188,7 @@ async function getData() {
             saturdayAndSunday[0] = false;
         }
     });
-    console.log("await getData() called" + new Date())
-
+    console.log("getData() called   ," + new Date().toTimeString().slice(0, 8) + ", DATA ===>>>  " + data.NoInventoryDays)
     return saturdayAndSunday;
 }
 function addDays(date, days) {
