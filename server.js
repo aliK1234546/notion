@@ -24,6 +24,7 @@ module.exports = function createServer() {
     app.use(express.static(__dirname + "/public"));
     app.use(express.urlencoded({ extended: true }))
     app.use(methodOverride('_method'))
+app.io = io;
 
     //db connection
     const mongoose = require('mongoose');
@@ -45,14 +46,14 @@ module.exports = function createServer() {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'alinail13.ank@gmail.com',
-            pass: 'Comolokko13!!'
+            user: 'jackpearsonseattle@gmail.com',
+            pass: 'epicPass'
         }
     });
 
     var mailOptions = {
-        from: 'alinail13.ank@gmail.com',
-        to: 'alikozan123456@gmail.com',
+        from: 'jackpearsonseattle@gmail.com',
+        to: 'alinail13.ank@gmail.com',
         subject: 'Weekend Available',
         text: 'https://www.epicpass.com/plan-your-trip/lift-access/reservations.aspx!'
     };
@@ -99,21 +100,6 @@ module.exports = function createServer() {
 
 
 
-        // else if(new Date(day).getDay() ===1){
-        //   console.log('monday  s full')
-        // }
-        // else if(new Date(day).getDay() ===2){
-        //   console.log('tuesday s full')
-        // }
-        // else if(new Date(day).get    Day() ===2){
-        //   console.log('wednesday s full')
-        // }
-        // else if(new Date(day).getDay() ===2){
-        //   console.log('thursday s full')
-        // }
-        // else if(new Date(day).getDay() ===2){
-        //   console.log('friday s full')
-        // }
         res.render('epicPass', { saturdayAndSunday })
     })
 
@@ -196,3 +182,19 @@ function addDays(date, days) {
     result.setDate(result.getDate() + days);
     return result;
 }
+
+        // else if(new Date(day).getDay() ===1){
+        //   console.log('monday  s full')
+        // }
+        // else if(new Date(day).getDay() ===2){
+        //   console.log('tuesday s full')
+        // }
+        // else if(new Date(day).get    Day() ===2){
+        //   console.log('wednesday s full')
+        // }
+        // else if(new Date(day).getDay() ===2){
+        //   console.log('thursday s full')
+        // }
+        // else if(new Date(day).getDay() ===2){
+        //   console.log('friday s full')
+        // }
